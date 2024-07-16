@@ -17,9 +17,10 @@ class QuizController extends Controller
     public function index(){
        return $this->quizService->index();  
     }
-
+    
     public function store(StoreQuizRequest $request){
         $validated = $request->validated();
+        
         return $this->quizService->store($validated);
     }
 
