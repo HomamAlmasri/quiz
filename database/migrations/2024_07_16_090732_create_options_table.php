@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Question::class)->constrained()->cascadeOnUpdate();
             $table->longText('option_text');
             $table->integer('points')->nullable();
+            $table->foreignIdFor(Question::class)->constrained();
             $table->timestamps();
         });
     }

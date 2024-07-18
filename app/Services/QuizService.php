@@ -10,7 +10,5 @@ class QuizService  extends CrudService
     public function __construct() {
         $this->model = Quiz::class;
     }
-    public function index(){
-        return $this->model::with('quiz')->get();
-    }
+    
 }
