@@ -8,8 +8,8 @@ use App\Models\Option;
 class OptionService  extends CrudService
 {
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->model = Option::class;
     }
-    
 }

@@ -8,23 +8,22 @@ use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
-      
-   public function __construct(protected QuizService $quizService)
+
+    public function __construct(protected QuizService $quizService)
     {
         $this->quizService = $quizService;
     }
 
-    public function index(){
-        
-       return $this->quizService->index();   
+    public function index()
+    {
 
+        return $this->quizService->index();
     }
-    
-    public function store(StoreQuizRequest $request){
+
+    public function store(StoreQuizRequest $request)
+    {
         $validated = $request->validated();
-        
+
         return $this->quizService->store($validated);
-
     }
-
 }

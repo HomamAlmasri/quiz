@@ -9,12 +9,12 @@ class Question extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function answer(){
-        $this->hasMany(Answer::class);
+    public function option()
+    {
+        return  $this->hasMany(Option::class);
     }
     public function quiz()
     {
-       return $this->belongsTo(Quiz::class);
+        return $this->belongsTo(Quiz::class);
     }
-  
 }

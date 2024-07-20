@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class QuestionService extends CrudService
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->model = Question::class;
     }
-    public function index(){
-        return $this->model::with('quiz')->get();
+    public function index()
+    {
+        return $this->model::with('option')->get();
     }
 }

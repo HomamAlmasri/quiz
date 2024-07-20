@@ -9,8 +9,9 @@ class Quiz extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
-    public function question(){
-        $this->hasMany(Question::class);
+
+    public function question()
+    {
+        return $this->hasMany(Question::class);
     }
 }

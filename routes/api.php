@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Http\Request;
@@ -10,5 +12,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::apiResource('quiz',QuizController::class);
-Route::apiResource('question',QuestionController::class);
+Route::apiResource('quiz', QuizController::class);
+Route::apiResource('question', QuestionController::class);
+Route::apiResource('option', OptionController::class);
