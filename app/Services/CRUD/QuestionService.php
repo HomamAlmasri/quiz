@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace  App\Services\CRUD;
 
 use App\Models\Question;
-use App\Models\Quiz;
-use Illuminate\Database\Eloquent\Model;
+
 
 class QuestionService extends CrudService
 {
@@ -14,6 +13,6 @@ class QuestionService extends CrudService
     }
     public function index()
     {
-        return $this->model::with('option')->get();
+        return $this->model::with('quiz','option')->get();
     }
 }

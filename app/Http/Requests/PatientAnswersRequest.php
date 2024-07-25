@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Range;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOptionRequest extends FormRequest
+class PatientAnswersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +22,10 @@ class StoreOptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'option_text' => 'required',
-            'points' => 'required|min:' . Range::where() ,
-            'question_id' => 'required'
+            'patient_id' => 'required|exists:patients,id',
+            'answers' => 'required|array',
+            'answers.*.question_id' => 'required|exists:questions,id',
+            'answers.*.option_id' => 'required|exists:options,id',    
         ];
     }
 }

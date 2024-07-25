@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOptionRequest;
-use App\Services\OptionService;
+use App\Services\CRUD\OptionService;
 use Illuminate\Http\Request;
 
 class OptionController extends Controller

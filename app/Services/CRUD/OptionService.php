@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\CRUD;
 
 use App\Interfaces\OptionServiceInterface;
 use App\Models\Option;

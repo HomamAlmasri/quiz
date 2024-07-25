@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
-use App\Services\QuestionService;
+use App\Services\CRUD\QuestionService;
 
-use Illuminate\Http\Request;
+
 
 class QuestionController extends Controller
 {
@@ -20,7 +20,6 @@ class QuestionController extends Controller
 
     public function store(StoreQuestionRequest $request){
         $validated = $request->validated();
-
         return $this->questionService->store($validated);
     }
 
