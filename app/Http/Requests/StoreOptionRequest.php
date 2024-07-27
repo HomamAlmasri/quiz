@@ -24,7 +24,7 @@ class StoreOptionRequest extends FormRequest
     {
         return [
             'option_text' => 'required',
-            'points' => 'required|min:' . Range::where() ,
+            'points' => 'required|min:0',
             'question_id' => 'required'
         ];
     }

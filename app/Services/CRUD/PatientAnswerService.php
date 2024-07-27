@@ -12,18 +12,27 @@ class PatientAnswerService extends CrudService
     {
         return $this->model = PatientAnswer::class;
     }
-    public function shows($quizId ,$patientId){
+    public function getresult($quizId, $patientId)
+    {
         $score = 0;
         $questions = DB::table('questions')
-        ->where('quiz_id', $quizId)
-        ->get();
-        foreach($questions as $question){
-        $answers = DB::table('patient_answers')
-        ->where('question_id',$question->id)
-        ->where('patient_id',$patientId)  
-        ->pluck('option_id');
-        $score += $answers;
-    }   
-    dd($answers , $score);   
+            ->where('quiz_id', $quizId)
+            ->get();
+        foreach ($questions as $question) {
+            $answers = DB::table('patient_answers')
+                ->where('question_id', $question->id)
+                ->where('patient_id', $patientId)
+                ->pluck('option_id')
+                ->sum();
+            $score += $answers;
+        }
+        $ranges = DB::table('ranges')
+            ->where('quiz_id', $quizId)
+            ->get();
+        foreach ($ranges as $range) {
+            if ($score >= $range->min && $score <= $range->max) {
+                dd($range->result);
+            }
+        }
     }
 }

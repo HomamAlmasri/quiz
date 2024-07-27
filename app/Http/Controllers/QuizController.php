@@ -12,7 +12,6 @@ class QuizController extends Controller
 
     public function __construct(protected QuizService $quizService)
     {
-        
     }
 
     public function index()
@@ -21,13 +20,13 @@ class QuizController extends Controller
         return $this->quizService->index();
     }
 
-    public function show(Quiz $quiz){
+    public function show(Quiz $quiz)
+    {
         return $this->quizService->show($quiz);
     }
 
     public function store(StoreQuizRequest $request)
     {
-        $validated = $request->validated();
-        return $this->quizService->store($validated);
+        return $this->quizService->store($request->validated());
     }
 }

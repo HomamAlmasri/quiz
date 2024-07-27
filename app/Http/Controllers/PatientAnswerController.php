@@ -14,14 +14,13 @@ class PatientAnswerController extends Controller
 {
     public function __construct(protected PatientAnswerService $patientAnswerService)
     {
-     $this->patientAnswerService = $patientAnswerService;   
+        $this->patientAnswerService = $patientAnswerService;
     }
-   
+
     public function storeMany(PatientAnswersRequest $request)
-    { 
+    {
         $answersData = [];
-        foreach($request->answers as $answer)
-        {   
+        foreach ($request->answers as $answer) {
             $answerData = [
                 'patient_id'    => $request->patient_id,
                 'question_id'   => $answer['question_id'],
@@ -29,12 +28,11 @@ class PatientAnswerController extends Controller
             ];
             $this->patientAnswerService->store($answerData);
             $answersData[] = $answerData;
-        
         }
         return PatientAnswersResource::collection($answersData);
     }
-    public function show(Quiz $quiz,Patient $patient){
-        $this->patientAnswerService->shows($quiz->id,$patient->id);    
+    public function shows(Quiz $quiz, Patient $patient)
+    {
+        $this->patientAnswerService->getresult($quiz->id, $patient->id);
     }
-}   
-    
+}

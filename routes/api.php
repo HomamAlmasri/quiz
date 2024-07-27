@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('quiz', QuizController::class);
 Route::apiResource('question', QuestionController::class);
 Route::apiResource('option', OptionController::class);
-Route::post('/patient',[PatientController::class,'store'])->name('patient.store');
-Route::post('/quizzes/{quiz}/patient-answers',[PatientAnswerController::class,'storeMany'])
-->name('patientAnswer.store');
-Route::get('/quizzes/{quiz}/{patient}/result',[PatientAnswerController::class,'show']);       
-Route::post('/quiz/{quiz}/range',[RangeController::class,'store']);
-Route::apiResource('/quiz/{quiz}',ResultController::class);
+Route::post('/patient', [PatientController::class, 'store'])->name('patient.store');
+Route::post('/quizzes/{quiz}/patient-answers', [PatientAnswerController::class, 'storeMany'])
+    ->name('patientAnswer.store');
+Route::get('/quizzes/{quiz}/{patient}/result', [PatientAnswerController::class, 'shows']);
+Route::post('/quiz/{quiz}/range', [RangeController::class, 'store']);
+// Route::apiResource('/quiz/{quiz}', ResultController::class);
