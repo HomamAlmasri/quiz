@@ -17,7 +17,7 @@ class PatientAnswerController extends Controller
         $this->patientAnswerService = $patientAnswerService;
     }
 
-    public function storeMany(PatientAnswersRequest $request)
+    public function storeMany(PatientAnswersRequest $request, Quiz $quiz, Patient $patient)
     {
         $answersData = [];
         foreach ($request->answers as $answer) {
@@ -26,13 +26,8 @@ class PatientAnswerController extends Controller
                 'question_id'   => $answer['question_id'],
                 'option_id'     => $answer['option_id'],
             ];
-            $this->patientAnswerService->store($answerData);
             $answersData[] = $answerData;
         }
-        return PatientAnswersResource::collection($answersData);
-    }
-    public function shows(Quiz $quiz, Patient $patient)
-    {
-        $this->patientAnswerService->getresult($quiz->id, $patient->id);
+        return $this->patientAnswerService->getresult($quiz->id, $patient->id, $answersData);
     }
 }

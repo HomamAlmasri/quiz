@@ -5,6 +5,7 @@ namespace App\Services\CRUD;
 use App\Interfaces\PatientAnswerServiceInterface;
 use App\Models\PatientAnswer;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\ArrayRule;
 
 class PatientAnswerService extends CrudService
 {
@@ -12,26 +13,19 @@ class PatientAnswerService extends CrudService
     {
         return $this->model = PatientAnswer::class;
     }
-    public function getresult($quizId, $patientId)
+    public function getresult($quizId, $patientId, array $data)
     {
+
         $score = 0;
-        $questions = DB::table('questions')
-            ->where('quiz_id', $quizId)
-            ->get();
-        foreach ($questions as $question) {
-            $answers = DB::table('patient_answers')
-                ->where('question_id', $question->id)
-                ->where('patient_id', $patientId)
-                ->pluck('option_id')
-                ->sum();
-            $score += $answers;
+        foreach ($data as $answers) {
+            $score += $answers['option_id'];
         }
         $ranges = DB::table('ranges')
             ->where('quiz_id', $quizId)
             ->get();
         foreach ($ranges as $range) {
             if ($score >= $range->min && $score <= $range->max) {
-                dd($range->result);
+                return $range->result;
             }
         }
     }
