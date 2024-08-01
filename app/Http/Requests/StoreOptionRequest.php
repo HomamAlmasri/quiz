@@ -24,7 +24,7 @@ class StoreOptionRequest extends FormRequest
     {
         return [
             'option_text' => 'required',
-            'points' => 'required|min:0',
+            'points'      => 'required|min:0',
             'question_id' => 'required'
         ];
     }

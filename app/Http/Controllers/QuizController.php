@@ -1,22 +1,23 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreQuizRequest;
+use App\Http\Requests\StoreExamRequest;
 use App\Models\Quiz;
 use App\Services\CRUD\QuizService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class QuizController extends Controller
 {
+    protected $quizService;
 
-    public function __construct(protected QuizService $quizService)
+    public function __construct(QuizService $quizService)
     {
+        $this->quizService = $quizService;
     }
 
     public function index()
     {
-
         return $this->quizService->index();
     }
 
@@ -25,8 +26,15 @@ class QuizController extends Controller
         return $this->quizService->show($quiz);
     }
 
-    public function store(StoreQuizRequest $request)
+    public function store(StoreExamRequest $request): JsonResponse
     {
-        return $this->quizService->store($request->validated());
+
+            $this->quizService->createQuizWithQuestionsAndOptions(    
+            $request->only('name'),
+            $request->input('questions'),
+            $request->input('ranges')
+            );
+            return response()->json('Quiz Created Successfully' , 201);
+    
     }
 }

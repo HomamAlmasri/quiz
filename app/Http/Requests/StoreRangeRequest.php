@@ -28,11 +28,12 @@ class StoreRangeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quiz_id' => 'required|exists:quizzes,id',
-            'ranges' => ['required', 'array', new minimumCheck($this->quiz_id, $this->scoreService)],
-            'ranges.*.min' => ['required', 'integer'],
-            'ranges.*.max' => ['required', 'integer'],
+            'quiz_id'         => 'required|exists:quizzes,id',
+            'ranges'          => ['required', 'array', new minimumCheck($this->quiz_id, $this->scoreService)],
+            'ranges.*.min'    => ['required', 'integer'],
+            'ranges.*.max'    => ['required', 'integer'],
             'ranges.*.result' => ['required', 'string']
+            
         ];
     } 
 }

@@ -13,11 +13,9 @@ class RangeService extends CrudService
         $this->model = Range::class;
     }
     public function store(array $data)
-    {
+    {    
         return $this->model::firstOrCreate(
-            [
-                'quiz_id' => $data['quiz_id'],
-            ]
+           $data
         );
     }
 }
